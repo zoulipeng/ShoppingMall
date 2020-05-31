@@ -1,0 +1,4 @@
+rootProject.name='ShoppingMall'
+include ':app'
+include ':demo1'
+include ':myqq'

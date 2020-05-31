@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:gravity="center"
+        android:text="2020-05-11 14:37"
+        android:textSize="18sp"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="6">
+        <TextView
+            android:id="@+id/tv_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_userhead"
+            android:layout_marginLeft="10dp"
+            android:text="张三"
+            android:textSize="20dp"/>
+        <ImageView
+            android:id="@+id/iv_userhead"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="10dp"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/activity_qqmain_news_item_user1"/>
+        <TextView
+            android:id="@+id/tv_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/iv_userhead"
+            android:layout_toRightOf="@+id/iv_userhead"
+            android:background="@drawable/act_qqmain_news_item_chat_dialog_box1"
+            android:gravity="center"
+            android:text="在吗?"
+            android:textColor="#000"
+            android:textSize="18sp" />
+    </RelativeLayout>
+</LinearLayout>

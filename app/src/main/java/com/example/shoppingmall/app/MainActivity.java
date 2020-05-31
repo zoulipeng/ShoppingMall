@@ -17,7 +17,7 @@ import com.example.shoppingmall.user.fragment.UserFragment;
 import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
+/////////////////////HelloWorld///////////////////////////////
 public class MainActivity extends FragmentActivity {
 
     @BindView(R.id.frameLayout)

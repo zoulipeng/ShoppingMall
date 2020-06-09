@@ -1,6 +1,8 @@
 package com.example.shoppingmall.home.adapter;
 
 import android.content.Context;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,8 +35,13 @@ import com.zhy.magicviewpager.transformer.ScaleInTransformer;
 
 import org.w3c.dom.Text;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.TimeZone;
+import java.util.logging.LogRecord;
 
 public class HomeFragmentAdapter extends RecyclerView.Adapter {
 
@@ -303,12 +310,38 @@ public class HomeFragmentAdapter extends RecyclerView.Adapter {
               });
         }
     }
+//-------------------------------------------------------------------------------------------------------------------
 
     private class SeckillHolder extends RecyclerView.ViewHolder {
         private Context mContext;
         private TextView tv_time_seckill;
         private TextView tv_more_seckill;
         private RecyclerView rv_seckill;
+        private SeckillRecyclerViewAdapter adapter;
+       private long da=0;
+//        //开启Handler机制实现秒杀倒计时的功能
+        Handler handler=new Handler(){
+            @Override
+            public void handleMessage(@NonNull Message msg) {
+                super.handleMessage(msg);
+
+                    da=da-1000;//让每次减少1000毫秒
+                    SimpleDateFormat dateFormat=new SimpleDateFormat("HH:mm:ss", Locale.CHINA);
+                    dateFormat.setTimeZone(TimeZone.getTimeZone("GMT+00:00"));
+                    String time=dateFormat.format(new Date(da));
+                    tv_time_seckill.setText(time);
+                    handler.removeMessages(0);
+                    handler.sendEmptyMessageDelayed(0,1000);
+                    if (da<=0){
+                        //把消息移除
+                        handler.removeCallbacksAndMessages(null);
+                    }
+
+                }
+
+
+
+        };
 
         public SeckillHolder(Context mContext, View itemView) {
             super(itemView);
@@ -319,11 +352,22 @@ public class HomeFragmentAdapter extends RecyclerView.Adapter {
 
         }
 
+
         public void setData(ResultBeanData.ResultBean.SeckillInfoBean seckillInfoBean) {
-            SeckillRecyclerViewAdapter adapter=new SeckillRecyclerViewAdapter(mContext, seckillInfoBean);
+            //设置RecyclerView
+            adapter=new SeckillRecyclerViewAdapter(mContext, seckillInfoBean);
             rv_seckill.setAdapter(adapter);
             //设置布局管理器
             rv_seckill.setLayoutManager(new LinearLayoutManager(mContext,LinearLayoutManager.HORIZONTAL,false));
+            //秒杀倒计时
+//            String转换成int的方法:int i = Integer.valueOf(string);
+            da=Integer.valueOf(seckillInfoBean.getEnd_time())-Integer.valueOf(seckillInfoBean.getStart_time());
+           SimpleDateFormat dateFormat=new SimpleDateFormat("HH:mm:ss", Locale.CHINA);
+            dateFormat.setTimeZone(TimeZone.getTimeZone("GMT+00:00"));
+            String time=dateFormat.format(new Date(da));
+            tv_time_seckill.setText(time);
+             handler.sendEmptyMessageDelayed(0x11,1000);
+
 
         }
     }

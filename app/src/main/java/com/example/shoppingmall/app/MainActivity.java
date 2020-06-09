@@ -52,7 +52,7 @@ public class MainActivity extends FragmentActivity {
         fragments = new ArrayList<>();
         initFragment();
         //设置RadioGroup的监听
-        initListener();
+        initListener();//!!
 
     }
 

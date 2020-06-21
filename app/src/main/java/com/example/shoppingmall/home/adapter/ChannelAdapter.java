@@ -66,5 +66,6 @@ public class ChannelAdapter extends BaseAdapter {
         ImageView iv_channel;
         TextView tv_channel;
 
+
     }
 }

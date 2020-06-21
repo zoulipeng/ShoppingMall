@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+    <ImageView
+        android:id="@+id/iv_recommend"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/new_img_loading_2">
+    </ImageView>
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="尚硅谷日系萌装水手服精品纪念版套装"
+        android:lines="2">
+
+    </TextView>
+        <TextView
+            android:id="@+id/tv_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$1000">
+
+        </TextView>
+    </LinearLayout>
+</LinearLayout>

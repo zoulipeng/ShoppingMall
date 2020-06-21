@@ -108,6 +108,9 @@ public class HomeFragmentAdapter extends RecyclerView.Adapter {
         }else if (viewType==SECKILL){
             return new SeckillHolder(mContext,mLayoutInflater.inflate(R.layout.seckill_item,null));
         }
+        else if (viewType==RECOMMEND){
+            return new RecommendViewHolder(mContext,mLayoutInflater.inflate(R.layout.recommend_item,null));
+        }
 
         return null;
     }
@@ -177,6 +180,9 @@ public class HomeFragmentAdapter extends RecyclerView.Adapter {
         }else if (getItemViewType(position)==SECKILL){
             SeckillHolder seckillHolder=(SeckillHolder)holder;
             seckillHolder.setData(resultBean.getSeckill_info());
+        }else if (getItemViewType(position)==RECOMMEND){
+            RecommendViewHolder recommendViewHolder=(RecommendViewHolder)holder;
+            recommendViewHolder.setData((List<ResultBeanData.ResultBean.RecommendInfoBean>) resultBean.getRecommend_info());
         }
     }
 
@@ -220,7 +226,7 @@ public class HomeFragmentAdapter extends RecyclerView.Adapter {
      */
     @Override
     public int getItemCount() {
-        return 4;
+        return 5;
     }
 
 
@@ -371,4 +377,29 @@ public class HomeFragmentAdapter extends RecyclerView.Adapter {
 
         }
     }
+
+    private class RecommendViewHolder extends RecyclerView.ViewHolder {
+        private GridView gv_recommend;
+        private TextView tv_more_recommend;
+        private Context mContext;
+        private RecommendGridViewAdapter recommendGridViewAdapter;
+
+        public RecommendViewHolder(final Context mContext, View itemView) {
+            super(itemView);
+            this.mContext=mContext;
+            gv_recommend=(GridView)itemView.findViewById(R.id.gv_recommend);
+            tv_more_recommend=(TextView)itemView.findViewById(R.id.tv_more_recommend);
+            gv_recommend.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Toast.makeText(mContext,"position=="+position,Toast.LENGTH_LONG).show();
+                }
+            });
+        }
+        public void setData(List<ResultBeanData.ResultBean.RecommendInfoBean> recommend_info) {
+            recommendGridViewAdapter=new RecommendGridViewAdapter(mContext,  recommend_info);
+            gv_recommend.setAdapter(recommendGridViewAdapter);
+        }
+    }
+
 }

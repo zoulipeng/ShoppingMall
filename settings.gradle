@@ -1,3 +1,4 @@
+include ':stardream'
 rootProject.name='ShoppingMall'
 include ':app'
 include ':demo1'

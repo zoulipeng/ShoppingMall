@@ -20,6 +20,7 @@ public class StartFragment extends Fragment {
     private LinearLayout pointLayout;
     private List<StarInfoBean.StarinfoBean> mData;
     private StarBaseAdapter adapter;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

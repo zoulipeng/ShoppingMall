@@ -151,7 +151,7 @@ public class HomeFragment extends BaseFragment {
     private void processGsonData(String str) {
         Gson gson = new Gson();
         ResultBeanData resultBeanData = gson.fromJson(str, ResultBeanData.class);
-        resultBean=resultBeanData.getResult();
+        resultBean = resultBeanData.getResult();
         String content = resultBeanData.getResult().getHot_info().get(0).getName();
         String content1 = resultBeanData.getResult().getChannel_info().get(0).getChannel_name();
         Log.e(TAG, content);

@@ -1,0 +1,46 @@
+package com.example.stardream.starfrag;
+
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+
+import androidx.annotation.NonNull;
+import androidx.viewpager.widget.PagerAdapter;
+
+import java.util.List;
+
+public class StarPagerAdapter extends PagerAdapter {
+    Context context;
+    List<ImageView> imageList;
+
+    public StarPagerAdapter(Context context, List<ImageView> imageList) {
+        this.context = context;
+        this.imageList = imageList;
+    }
+
+    @Override
+    public int getCount() {
+        return imageList.size();
+    }
+
+    @Override
+    public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
+        return view==object;
+    }
+
+    @NonNull
+    @Override
+    public Object instantiateItem(@NonNull ViewGroup container, int position) {
+        ImageView imageView=imageList.get(position);
+        container.addView(imageView);
+        return imageView;
+    }
+
+    @Override
+    public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
+        ImageView imageView=imageList.get(position);
+        container.removeView(imageView);
+        
+    }
+}

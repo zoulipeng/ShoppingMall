@@ -1,5 +1,6 @@
 package com.example.stardream.starfrag;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -7,6 +8,7 @@ import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -53,8 +55,23 @@ public class StartFragment extends Fragment {
         initView(view);
         initPager();
         setVPListener();
+        setGvListener();
         handler.sendEmptyMessageDelayed(8,3000);
         return view;
+    }
+
+    private void setGvListener() {
+        mStarfragGv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Toast.makeText(getContext(),"点击了网格布局页面",Toast.LENGTH_LONG).show();//测试
+                  Intent intent=new Intent(getContext(),StarAnalysisActivity.class);
+                  StarInfoBean.StarinfoBean bean=mData.get(position);
+                  intent.putExtra("star",bean);
+                  startActivity(intent);
+
+            }
+        });
     }
 
     private void setVPListener() {
@@ -72,21 +89,21 @@ public class StartFragment extends Fragment {
                 pointList.get(position).setImageResource(R.mipmap.point_focus);
 
                 //////////////ViewPager设置监听点击事件////////////////////////////////////////
-                switch (position){
-                    case 0:
-                        Toast.makeText(getContext(),"Hello1",Toast.LENGTH_LONG).show();
-                        break;
-                    case 1:
-                        Toast.makeText(getContext(),"Hello2",Toast.LENGTH_LONG).show();
-                        break;
-                    case 2:
-                        Toast.makeText(getContext(),"Hello3",Toast.LENGTH_LONG).show();
-                        break;
-                    case 3:
-                        Toast.makeText(getContext(),"Hello4",Toast.LENGTH_LONG).show();
-                        break;
-
-                }
+//                switch (position){
+//                    case 0:
+//                        Toast.makeText(getContext(),"Hello1",Toast.LENGTH_LONG).show();
+//                        break;
+//                    case 1:
+//                        Toast.makeText(getContext(),"Hello2",Toast.LENGTH_LONG).show();
+//                        break;
+//                    case 2:
+//                        Toast.makeText(getContext(),"Hello3",Toast.LENGTH_LONG).show();
+//                        break;
+//                    case 3:
+//                        Toast.makeText(getContext(),"Hello4",Toast.LENGTH_LONG).show();
+//                        break;
+//
+//                }
 
             }
 

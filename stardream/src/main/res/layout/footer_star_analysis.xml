@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+ <TextView
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:text="星座解析"
+     android:textSize="15dp"
+     android:textColor="#000000"
+     android:layout_gravity="center_horizontal"></TextView>
+ <TextView
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:layout_marginTop="10dp"
+     android:id="@+id/footerstar_tv_info"
+     android:background="@drawable/footer_star_bg"
+     android:textColor="@color/purple"
+     android:text="奇幻冒险风格,整体气质相当奇幻且独特,并包含着许多无厘头的幽默元素。沙漠中踢球、公路上滑板、上到高原下到海底,飞檐走壁上天入地,沃尔特·米蒂从平凡的写字楼,带领观众踏上一个接着一个的“屌丝奇幻漂流”旅程,成为一个无所不能的冒险家和大英雄(新浪娱乐评)。 《白日梦想家》是一部非常惊喜之作,看似带点奇幻元素,无非也只利用带点天马行空的框架,诉说一个跳出人生框框的追梦式故事,更让观众看得投入有共鸣"></TextView>
+</LinearLayout>

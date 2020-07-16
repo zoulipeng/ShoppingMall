@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".starfrag.StarAnalysisActivity">
+    <include layout="@layout/titlebar"></include>
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        app:civ_border_width="1dp"
+        app:civ_border_color="@color/pink"
+        android:id="@+id/startanalysis_iv"
+
+        android:src="@drawable/ic_launcher_round"
+        android:layout_gravity="center_horizontal">
+    </de.hdodenhof.circleimageview.CircleImageView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:id="@+id/staranalysis_tv_name"
+        android:layout_marginTop="8dp"
+        android:textColor="#000000"
+        android:text="白羊座"
+        android:textSize="18dp"
+        android:layout_gravity="center_horizontal"></TextView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/staranalysis_tv_date"
+        android:text="2月19日-3月20日"
+        android:textColor="@color/white"
+        android:layout_marginTop="8dp"
+        android:background="@color/purple"></TextView>
+    <ListView
+        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/staranalysis_lv"></ListView>
+</LinearLayout>

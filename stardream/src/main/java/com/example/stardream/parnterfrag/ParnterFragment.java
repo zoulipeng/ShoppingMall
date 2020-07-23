@@ -1,66 +1,119 @@
 package com.example.stardream.parnterfrag;
 
+import android.content.Context;
+import android.graphics.Bitmap;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.Spinner;
+import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
 
 import com.example.stardream.R;
+import com.example.stardream.bean.StarInfoBean;
+import com.example.stardream.utils.AssetsUtils;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ParnterFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class ParnterFragment extends Fragment {
+import java.lang.reflect.Array;
+import java.util.List;
+import java.util.Map;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+public class ParnterFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemSelectedListener {
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
-    public ParnterFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ParnterFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ParnterFragment newInstance(String param1, String param2) {
-        ParnterFragment fragment = new ParnterFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+    private ImageView manIv;
+    private Spinner manSp;
+    private ImageView womenIv;
+    private Spinner womenSp;
+    private Button priceBtn;
+    private Button matchBtn;
+    private List<StarInfoBean.StarinfoBean> starinfoList;
+//    private static String spList[] ={"白羊座","金牛座","双子座","巨蟹座","狮子座","处女座","天秤座","天蝎座","射手座","摩羯座","水瓶座","双鱼座"};
+    private ArrayAdapter<String> adapter;
+    private Map<String, Bitmap> logoImgMap;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_parnter, container, false);
+
+        View view = inflater.inflate(R.layout.fragment_parnter, null);
+        initView(view);
+        initSpinner();
+        return view;
+    }
+
+    private void initSpinner() {
+        //定义一个存储十二星座的数组spList
+        String []spList=new String[12];
+        for (int i=0;i<starinfoList.size();i++){
+            spList[i]=starinfoList.get(i).getName();
+        }
+        adapter=new ArrayAdapter<String>(getContext(),R.layout.item_parnter_sp,spList);
+        //设置展开的时候下拉菜单的样式
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        manSp.setAdapter(adapter);
+        womenSp.setAdapter(adapter);
+        String logoname=starinfoList.get(2).getLogoname();
+        logoImgMap = AssetsUtils.getContentlogoImgMap();
+        Bitmap bitmap=logoImgMap.get(logoname);
+        manIv.setImageBitmap(bitmap);
+        womenIv.setImageBitmap(bitmap);
+    }
+    private void initView( View view) {
+        manIv=view.findViewById(R.id.parnterfrag_iv_man);
+        womenIv=view.findViewById(R.id.parnter_iv_women);
+        manSp=view.findViewById(R.id.parnterfrag_sp_man);
+        //设置manSp的监听事件
+        manSp.setOnItemSelectedListener(this);
+        womenSp=view.findViewById(R.id.parnterfrag_sp_women);
+        //设置womenSp的监听事件
+        womenSp.setOnItemSelectedListener(this);
+        priceBtn=view.findViewById(R.id.parnterfrag_btn_price);
+        matchBtn=view.findViewById(R.id.parnterfrag_bt_match);
+        //设置按钮的监听事件
+        priceBtn.setOnClickListener(this);
+        matchBtn.setOnClickListener(this);
+        Bundle bundle=getArguments();
+        StarInfoBean bean= (StarInfoBean) bundle.getSerializable("info");
+        starinfoList = bean.getStarinfo();
+    }
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.parnterfrag_btn_price:
+                break;
+            case R.id.parnterfrag_bt_match:
+                break;
+        }
+        
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        switch (parent.getId()){
+            case R.id.parnterfrag_sp_man:
+            String logoname=starinfoList.get(position).getLogoname();
+            logoImgMap=AssetsUtils.getContentlogoImgMap();
+            Bitmap bitmap1=logoImgMap.get(logoname);
+            manIv.setImageBitmap(bitmap1);
+                break;
+            case R.id.parnterfrag_sp_women:
+             String logonames=starinfoList.get(position).getLogoname();
+             logoImgMap=AssetsUtils.getContentlogoImgMap();
+             Bitmap bitmap2=logoImgMap.get(logonames);
+             womenIv.setImageBitmap(bitmap2);
+                break;
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }

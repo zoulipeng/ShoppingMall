@@ -8,8 +8,9 @@
     <color name="pink">#d4237a</color>
     <color name="grey">#8a8a8a</color>
     <color name="white">#FFFFFF</color>
-
+    <color name="lavenderblush">#FFF0F5</color><!--淡紫红 -->
     <color name="lightpink">#EB749C</color>
+    <color name="lightpinks">#FFB6C1</color><!--亮粉红色 -->
     <color name="orange">#EEAD0E</color>
     <color name="darkyellow">#FFF68F</color>
     <color name="purple">#EE82EE</color>

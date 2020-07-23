@@ -1,10 +1,8 @@
 package com.example.stardream.utils;
-
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-
 import com.example.stardream.bean.StarInfoBean;
 
 import java.io.ByteArrayOutputStream;

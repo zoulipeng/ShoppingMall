@@ -1,9 +1,8 @@
 package com.example.stardream.parnterfrag;
 
-import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -20,7 +18,6 @@ import com.example.stardream.R;
 import com.example.stardream.bean.StarInfoBean;
 import com.example.stardream.utils.AssetsUtils;
 
-import java.lang.reflect.Array;
 import java.util.List;
 import java.util.Map;
 
@@ -89,6 +86,20 @@ public class ParnterFragment extends Fragment implements View.OnClickListener, A
             case R.id.parnterfrag_btn_price:
                 break;
             case R.id.parnterfrag_bt_match:
+                /**
+                 * Return the position of the currently selected item within the adapter's data set
+                 *
+                 * @return int Position (starting at 0), or {@link #INVALID_POSITION} if there is nothing selected.
+                 * */
+                int mspItem=manSp.getSelectedItemPosition();
+                int wspItem=womenSp.getSelectedItemPosition();
+                Intent intent=new Intent(getContext(),ParnterAnalysisActivity.class);
+                intent.putExtra("parnter_man",starinfoList.get(mspItem).getName());
+                intent.putExtra("parnter_women",starinfoList.get(wspItem).getName());
+                intent.putExtra("paenetr_man_logo",starinfoList.get(mspItem).getLogoname());
+                intent.putExtra("parnter_women_logo",starinfoList.get(wspItem).getLogoname());
+                startActivity(intent);
+
                 break;
         }
         

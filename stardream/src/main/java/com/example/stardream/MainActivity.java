@@ -11,6 +11,7 @@ import com.example.stardream.mefrag.MeFragment;
 import com.example.stardream.parnterfrag.ParnterFragment;
 import com.example.stardream.starfrag.StartFragment;
 import com.example.stardream.utils.AssetsUtils;
+import com.example.stardream.utils.OkHttpUtils;
 import com.google.gson.Gson;
 
 public class MainActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener {
@@ -115,4 +116,5 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         }
         transaction.commit();
     }
+    
 }
